@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prsp-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: frizer.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prsp
+            port:
+              number: 8080
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pgadmin-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pgadmin.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-pgadmin
+            port:
+              number: 80
